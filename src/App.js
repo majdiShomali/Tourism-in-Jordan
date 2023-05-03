@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "./pages/Header.js";
+import Home from "./pages/Home.js";
+import Extra from "./pages/Extra.js";
+import petra from '../src/pages/petra.jpeg'; //
+import sea from '../src/pages/sea.jpeg'; //
+import { useState } from 'react'
+import Footer from "./pages/Footer.js";
 
-function App() {
+export default function App() {
+
+  const [first, setfirst] = useState([
+    {
+     Id:0,
+     name:"petra",
+     info:"petra information",
+     images:petra,
+     price:10
+    },
+    {
+      Id:1,
+      name:"dead sea",
+      info:"dead sea information",
+      images:sea,
+      price:10
+     }
+  
+  ])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+     <Header />
+      <Routes>
+          <Route path="/" element={<Home initState5={first} />} />
+          <Route path="Extra" element={<Extra />} />
+      </Routes>
+
+      <Footer/>
+    </BrowserRouter>
   );
 }
 
-export default App;
+
